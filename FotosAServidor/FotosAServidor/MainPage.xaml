@@ -4,11 +4,66 @@
              xmlns:local="clr-namespace:FotosAServidor"
              x:Class="FotosAServidor.MainPage">
 
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text=" Fotos A Server 1!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"
+                     BackgroundColor="#547799">
+            <StackLayout>
+                <StackLayout Orientation="Horizontal"
+                                     HorizontalOptions="Center">
+                    <Button x:Name="ButCamara"
+                                    Text="Camara"
+                                    Clicked="ButCamara_Clicked">
+                    </Button>
+                    <Button x:Name="ButGaleria"
+                                    Text="Galeria"
+                                    Clicked="ButGaleria_Clicked">
+                    </Button>
+                    <Button x:Name="ButEnviar"
+                            Text="Enviar Al Servidor"
+                            Clicked="ButEnviar_Clicked">
+
+                    </Button>
+                </StackLayout>
+                <ListView x:Name="MiLista"
+                            BackgroundColor="WhiteSmoke"
+                            Margin="10"
+                            VerticalOptions="FillAndExpand"
+                            RowHeight="80"
+                            SeparatorColor="Black">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal"
+                                             Padding ="5">
+                                    <Frame Margin="5"
+                                           HeightRequest="40"
+                                           WidthRequest="40"
+                                            Padding="20,5,20,5"
+                                            BackgroundColor="White"
+                                            CornerRadius="20">
+                                        <Image x:Name="MiImagen"
+                                               Aspect="Fill"
+                                               
+                                               Source="{Binding ImagenPath}">
+                                        </Image>
+                                    </Frame>
+                                    <StackLayout Orientation="Vertical"
+                                                 Margin="5"
+                                                 VerticalOptions="Center">
+                                        <Label  x:Name="MIPath"
+                                                Text="{Binding ImagenNombre}"
+                                                TextColor="Black"
+                                                LineBreakMode="TailTruncation"
+                                                FontSize="Small"
+                                                VerticalOptions="Center"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
 
 </ContentPage>
