@@ -38,7 +38,7 @@ namespace FotosAServidor
             }
 
             //Servidor = "213.98.73.215";
-            Servidor = "10.0.65.200";
+            //Servidor = "10.0.65.200";
 
         }
 
