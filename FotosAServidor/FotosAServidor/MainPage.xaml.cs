@@ -38,7 +38,7 @@ namespace FotosAServidor
             }
 
             //Servidor = "213.98.73.215";
-            //Servidor = "10.0.65.200";
+            Servidor = "10.0.65.200";
 
         }
 
@@ -90,7 +90,7 @@ namespace FotosAServidor
             for (MiContador = 0; MiContador < imagenes.Count; MiContador++)
             {
                 //MandarImagenAlServidor(imagenes[MiContador].ImagenPath.ToString(),"medidas", imagenes[MiContador].ImagenNombre);
-                MandarImagenAlServidor(imagenes[MiContador].ImagenPath.ToString(), "fotoscorreo", MiMedidaID.ToString() + (MiContador + 1).ToString("00"));
+                MandarImagenAlServidor(imagenes[MiContador].ImagenPath.ToString(), "fotoscorreo", imagenes[MiContador].ImagenNombre + (MiContador + 1).ToString("00"));
             }
             DisplayAlert("Resultado...", string.Format("Enviadas {0} imagenes...", MiContador), "OK");
         }
