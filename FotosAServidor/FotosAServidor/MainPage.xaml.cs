@@ -23,6 +23,7 @@ namespace FotosAServidor
         private List<ImagenClase> imagenes = new List<ImagenClase>();
         private int MiMedidaID;
         private string Servidor;
+        private int CuentaImagenes;
 
         public MainPage()
         {
@@ -78,6 +79,7 @@ namespace FotosAServidor
             {
 
                 PhotoSize = Plugin.Media.Abstractions.PhotoSize.Small,
+                
             });
 
             if (file == null) return;
@@ -134,6 +136,11 @@ namespace FotosAServidor
                 imagen.ImagenPath = MiPath;
                 imagen.ImagenNombre = MiNombreImagen.ToString();
                 imagenes.Add(imagen);
+
+                var MiImagen = new Image();
+                MiImagen.Source = imagen.ImagenPath;
+                GridImagenes.Children.Add(MiImagen,CuentaImagenes,0);
+                CuentaImagenes++;
 
                 MiLista.ItemsSource = null;
                 MiLista.ItemsSource = imagenes;
