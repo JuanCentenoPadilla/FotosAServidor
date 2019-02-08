@@ -74,9 +74,11 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="90"/>
+                        <RowDefinition Height="90" />
                         <RowDefinition Height="90" />
                         <RowDefinition Height="90" />
                     </Grid.RowDefinitions>

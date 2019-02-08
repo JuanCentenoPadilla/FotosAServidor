@@ -89,21 +89,43 @@ namespace FotosAServidor
 
         private void ButEnviar_Clicked(object sender, EventArgs e)
         {
-            int MiContador;
-            for (MiContador = 0; MiContador < imagenes.Count; MiContador++)
+            if (TxtNombre.Text is null)
             {
-                //MandarImagenAlServidor(imagenes[MiContador].ImagenPath.ToString(),"medidas", imagenes[MiContador].ImagenNombre);
-                MandarImagenAlServidor(imagenes[MiContador].ImagenPath.ToString(), "fotoscorreo", imagenes[MiContador].ImagenNombre + (MiContador + 1).ToString("00"));
+                DisplayAlert("Faltan Nombre", "Indique un nombre...", "OK");
+                return;
             }
-            DisplayAlert("Resultado...", string.Format("Enviadas {0} imagenes...", MiContador), "OK");
 
-            for (MiFila = 0; MiFila < 3; MiFila++)
+            //int MiContador;
+            //for (MiContador = 0; MiContador < imagenes.Count; MiContador++)
+            //{
+            //    MandarImagenAlServidor(imagenes[MiContador].ImagenPath.ToString(), "fotoscorreo", imagenes[MiContador].ImagenNombre + (MiContador + 1).ToString("00"));
+            //}
+
+            for (int i = 0; i < GridImagenes.Children.Count; i++)
             {
-                for (MiColumna = 0; MiColumna < 3;MiColumna ++)
-                {
-                    MandarImagenAlServidor();
-                }
+                string MiNombreImagen = TxtNombre.Text + "-" + i.ToString("00") + "_"
+                + DateTime.Now.Year + DateTime.Now.Month.ToString("00") + DateTime.Now.Day.ToString("00")
+                + DateTime.Now.Hour.ToString("00") + DateTime.Now.Minute.ToString("00") + DateTime.Now.Second.ToString("00");
+                //Image MiFoto = (Image)GridImagenes.Children[i];
+                MandarImagenAlServidor(imagenes.ElementAt(i).ImagenPath, "fotoscorreo", MiNombreImagen);
             }
+
+            //for (MiFila = 0; MiFila < 3; MiFila++)
+            //{
+            //    for (MiColumna = 0; MiColumna < 3;MiColumna ++)
+            //    {
+            //        string MiNombreImagen =
+            //        +DateTime.Now.Year + DateTime.Now.Month.ToString("00") + DateTime.Now.Day.ToString("00")
+            //        + DateTime.Now.Hour.ToString("00") + DateTime.Now.Minute.ToString("00") + DateTime.Now.Second.ToString("00")
+            //        + (imagenes.Count + 1).ToString("00");
+
+            //        Image MiFoto = (Image)GridImagenes.Children[0];
+            //        MandarImagenAlServidor(MiFoto.Source.ToString(),"fotoscorreo",TxtNombre.Text + MiFila + MiColumna);
+            //    }
+            //}
+
+            DisplayAlert("Resultado...", string.Format("Enviadas {0} imagenes...", GridImagenes.Children.Count), "OK");
+
         }
         private void MandarImagenAlServidor(string MiPath, string MiCarpetaDestino, string MiNombreDestino)
         {
