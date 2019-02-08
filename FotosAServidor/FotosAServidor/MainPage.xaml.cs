@@ -23,8 +23,9 @@ namespace FotosAServidor
         private List<ImagenClase> imagenes = new List<ImagenClase>();
         private int MiMedidaID;
         private string Servidor;
-        private int CuentaImagenes;
-
+        private int MiColumna;
+        private int MiFila;
+        
         public MainPage()
         {
             InitializeComponent();
@@ -95,6 +96,14 @@ namespace FotosAServidor
                 MandarImagenAlServidor(imagenes[MiContador].ImagenPath.ToString(), "fotoscorreo", imagenes[MiContador].ImagenNombre + (MiContador + 1).ToString("00"));
             }
             DisplayAlert("Resultado...", string.Format("Enviadas {0} imagenes...", MiContador), "OK");
+
+            for (MiFila = 0; MiFila < 3; MiFila++)
+            {
+                for (MiColumna = 0; MiColumna < 3;MiColumna ++)
+                {
+                    MandarImagenAlServidor();
+                }
+            }
         }
         private void MandarImagenAlServidor(string MiPath, string MiCarpetaDestino, string MiNombreDestino)
         {
@@ -139,9 +148,14 @@ namespace FotosAServidor
 
                 var MiImagen = new Image();
                 MiImagen.Source = imagen.ImagenPath;
-                GridImagenes.Children.Add(MiImagen,CuentaImagenes,0);
-                CuentaImagenes++;
-
+            
+                GridImagenes.Children.Add(MiImagen,MiColumna,MiFila);
+                MiColumna++;
+                if (MiColumna == 3)
+                {
+                    MiColumna = 0;
+                    MiFila++;
+                }
                 MiLista.ItemsSource = null;
                 MiLista.ItemsSource = imagenes;
 

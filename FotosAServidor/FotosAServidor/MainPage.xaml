@@ -24,6 +24,13 @@
 
                     </Button>
                 </StackLayout>
+                <StackLayout Orientation="Horizontal"
+                             BackgroundColor="White">
+                    <Entry x:Name="TxtNombre"
+                           TextColor="Black"
+                           HorizontalOptions="CenterAndExpand"
+                           Placeholder="Guardar como..."/>
+                </StackLayout>
                 <ListView x:Name="MiLista"
                             BackgroundColor="WhiteSmoke"
                             Margin="10"
@@ -69,10 +76,9 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
-                        <RowDefinition Height="*" />
+                        <RowDefinition Height="90"/>
+                        <RowDefinition Height="90" />
+                        <RowDefinition Height="90" />
                     </Grid.RowDefinitions>
                 </Grid>   
                 
