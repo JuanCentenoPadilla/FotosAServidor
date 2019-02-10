@@ -31,44 +31,6 @@
                            HorizontalOptions="CenterAndExpand"
                            Placeholder="Guardar como..."/>
                 </StackLayout>
-                <ListView x:Name="MiLista"
-                            BackgroundColor="WhiteSmoke"
-                            Margin="10"
-                            VerticalOptions="FillAndExpand"
-                            RowHeight="80"
-                            SeparatorColor="Black">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Orientation="Horizontal"
-                                             Padding ="5">
-                                    <Frame Margin="5"
-                                           HeightRequest="40"
-                                           WidthRequest="40"
-                                            Padding="20,5,20,5"
-                                            BackgroundColor="White"
-                                            CornerRadius="20">
-                                        <Image x:Name="MiImagen"
-                                               Aspect="Fill"
-                                               
-                                               Source="{Binding ImagenPath}">
-                                        </Image>
-                                    </Frame>
-                                    <StackLayout Orientation="Vertical"
-                                                 Margin="5"
-                                                 VerticalOptions="Center">
-                                        <Label  x:Name="MIPath"
-                                                Text="{Binding ImagenNombre}"
-                                                TextColor="Black"
-                                                LineBreakMode="TailTruncation"
-                                                FontSize="Small"
-                                                VerticalOptions="Center"/>
-                                    </StackLayout>
-                                </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
                 <Grid x:Name="GridImagenes">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />

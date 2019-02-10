@@ -18,7 +18,6 @@ namespace FotosAServidor
         private class ImagenClase
         {
             public string ImagenPath { get; set; }
-            public string ImagenNombre { get; set; }
         };
         private List<ImagenClase> imagenes = new List<ImagenClase>();
         private int MiMedidaID;
@@ -40,7 +39,7 @@ namespace FotosAServidor
             }
 
             //Servidor = "213.98.73.215";
-            Servidor = "10.0.65.200";
+            //Servidor = "10.0.65.200";
 
         }
 
@@ -66,10 +65,10 @@ namespace FotosAServidor
                 });
                 if (file == null) return;
 
-                Añadir_A_Lista(file.Path.ToString());
+                Añadir_A_Grid(file.Path.ToString());
             }
         }
-            private async void ButGaleria_Clicked(object sender, EventArgs e)
+        private async void ButGaleria_Clicked(object sender, EventArgs e)
         {
             if (!CrossMedia.Current.IsPickPhotoSupported)
             {
@@ -84,7 +83,7 @@ namespace FotosAServidor
             });
 
             if (file == null) return;
-            Añadir_A_Lista(file.Path.ToString());
+            Añadir_A_Grid(file.Path.ToString());
         }
 
         private void ButEnviar_Clicked(object sender, EventArgs e)
@@ -94,35 +93,13 @@ namespace FotosAServidor
                 DisplayAlert("Faltan Nombre", "Indique un nombre...", "OK");
                 return;
             }
-
-            //int MiContador;
-            //for (MiContador = 0; MiContador < imagenes.Count; MiContador++)
-            //{
-            //    MandarImagenAlServidor(imagenes[MiContador].ImagenPath.ToString(), "fotoscorreo", imagenes[MiContador].ImagenNombre + (MiContador + 1).ToString("00"));
-            //}
-
             for (int i = 0; i < GridImagenes.Children.Count; i++)
             {
                 string MiNombreImagen = TxtNombre.Text + "-" + i.ToString("00") + "_"
                 + DateTime.Now.Year + DateTime.Now.Month.ToString("00") + DateTime.Now.Day.ToString("00")
                 + DateTime.Now.Hour.ToString("00") + DateTime.Now.Minute.ToString("00") + DateTime.Now.Second.ToString("00");
-                //Image MiFoto = (Image)GridImagenes.Children[i];
                 MandarImagenAlServidor(imagenes.ElementAt(i).ImagenPath, "fotoscorreo", MiNombreImagen);
             }
-
-            //for (MiFila = 0; MiFila < 3; MiFila++)
-            //{
-            //    for (MiColumna = 0; MiColumna < 3;MiColumna ++)
-            //    {
-            //        string MiNombreImagen =
-            //        +DateTime.Now.Year + DateTime.Now.Month.ToString("00") + DateTime.Now.Day.ToString("00")
-            //        + DateTime.Now.Hour.ToString("00") + DateTime.Now.Minute.ToString("00") + DateTime.Now.Second.ToString("00")
-            //        + (imagenes.Count + 1).ToString("00");
-
-            //        Image MiFoto = (Image)GridImagenes.Children[0];
-            //        MandarImagenAlServidor(MiFoto.Source.ToString(),"fotoscorreo",TxtNombre.Text + MiFila + MiColumna);
-            //    }
-            //}
 
             DisplayAlert("Resultado...", string.Format("Enviadas {0} imagenes...", GridImagenes.Children.Count), "OK");
 
@@ -154,34 +131,30 @@ namespace FotosAServidor
             {
                 result = reader.ReadToEnd();
             }
-            //Console.WriteLine(result);
         }
-            private void Añadir_A_Lista(string MiPath)
+        private void Añadir_A_Grid(string MiPath)
             {
-                string MiNombreImagen = 
-                    + DateTime.Now.Year + DateTime.Now.Month.ToString("00") + DateTime.Now.Day.ToString("00")
-                    + DateTime.Now.Hour.ToString("00") + DateTime.Now.Minute.ToString("00") + DateTime.Now.Second.ToString("00")
-                    + (imagenes.Count + 1).ToString("00");
+            string MiNombreImagen =
+                +DateTime.Now.Year + DateTime.Now.Month.ToString("00") + DateTime.Now.Day.ToString("00")
+                + DateTime.Now.Hour.ToString("00") + DateTime.Now.Minute.ToString("00") + DateTime.Now.Second.ToString("00")
+                + (imagenes.Count + 1).ToString("00");
 
-                ImagenClase imagen = new ImagenClase();
-                imagen.ImagenPath = MiPath;
-                imagen.ImagenNombre = MiNombreImagen.ToString();
-                imagenes.Add(imagen);
+            ImagenClase imagen = new ImagenClase();
+            imagen.ImagenPath = MiPath;
+            imagenes.Add(imagen);
 
-                var MiImagen = new Image();
-                MiImagen.Source = imagen.ImagenPath;
+            var MiImagen = new Image();
+                MiImagen.Source =   MiPath;
             
                 GridImagenes.Children.Add(MiImagen,MiColumna,MiFila);
                 MiColumna++;
-                if (MiColumna == 3)
+                if (MiColumna == 4)
                 {
                     MiColumna = 0;
                     MiFila++;
                 }
-                MiLista.ItemsSource = null;
-                MiLista.ItemsSource = imagenes;
 
             }
 
-        }
     }
+}
