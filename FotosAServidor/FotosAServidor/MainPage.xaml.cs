@@ -11,6 +11,8 @@ using System.Net;
 using System.IO;
 using System.Net.NetworkInformation;
 
+using Plugin.DeviceInfo;
+
 namespace FotosAServidor
 {
     public partial class MainPage : ContentPage
@@ -106,7 +108,9 @@ namespace FotosAServidor
         }
         private void MandarImagenAlServidor(string MiPath, string MiCarpetaDestino, string MiNombreDestino)
         {
-            System.Uri url = new System.Uri("http://" + Servidor + "/Reparto/Service1.svc/UploadImage/" + MiCarpetaDestino + "," + MiNombreDestino);
+            string MiModeloMovil = CrossDeviceInfo.Current.Model;
+            MiNombreDestino = "RTE:" + MiModeloMovil + MiNombreDestino; 
+            System.Uri url = new System.Uri("http://" + Servidor + "/Reparto/Service1.svc/UploadImage/" + MiCarpetaDestino + "," +  MiNombreDestino);
 
             string filePath = MiPath;
 
@@ -155,6 +159,5 @@ namespace FotosAServidor
                 }
 
             }
-
     }
 }
