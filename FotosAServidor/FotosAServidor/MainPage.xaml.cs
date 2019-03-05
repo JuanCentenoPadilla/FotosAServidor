@@ -41,7 +41,7 @@ namespace FotosAServidor
             }
 
             //Servidor = "213.98.73.215";
-            //Servidor = "10.0.65.200";
+            Servidor = "10.0.65.200";
 
         }
 
@@ -106,13 +106,48 @@ namespace FotosAServidor
             DisplayAlert("Resultado...", string.Format("Enviadas {0} imagenes...", GridImagenes.Children.Count), "OK");
 
         }
+        //private void MandarImagenAlServidor(string MiPath, string MiCarpetaDestino, string MiNombreDestino)
+        //{
+        //    string MiModeloMovil = CrossDeviceInfo.Current.Model;
+        //    MiNombreDestino = "RTE:" + MiModeloMovil + MiNombreDestino; 
+        //    System.Uri url = new System.Uri("http://" + Servidor + "/Reparto/Service1.svc/UploadImage/" + MiCarpetaDestino + "," +  MiNombreDestino);
+
+        //    string filePath = MiPath;
+
+        //    HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+        //    request.Accept = "application/octet-stream";
+        //    request.Method = "POST";
+        //    request.ContentType = "image/jpeg";
+        //    using (Stream fileStream = File.OpenRead(filePath))
+        //    using (Stream requestStream = request.GetRequestStream())
+        //    {
+        //        int bufferSize = 1002048;
+        //        byte[] buffer = new byte[bufferSize];
+        //        int byteCount = 0;
+        //        while ((byteCount = fileStream.Read(buffer, 0, bufferSize)) > 0)
+        //        {
+        //            requestStream.Write(buffer, 0, byteCount);
+        //        }
+        //    }
+        //    string result;
+        //    using (WebResponse response = request.GetResponse())
+        //    using (StreamReader reader = new StreamReader(response.GetResponseStream()))
+        //    {
+        //        result = reader.ReadToEnd();
+        //    }
+        //}
         private void MandarImagenAlServidor(string MiPath, string MiCarpetaDestino, string MiNombreDestino)
         {
+
+            int bufferSize = 1002048;
+            byte[] buffer = new byte[bufferSize];
+
             string MiModeloMovil = CrossDeviceInfo.Current.Model;
-            MiNombreDestino = "RTE:" + MiModeloMovil + MiNombreDestino; 
-            System.Uri url = new System.Uri("http://" + Servidor + "/Reparto/Service1.svc/UploadImage/" + MiCarpetaDestino + "," +  MiNombreDestino);
+            MiNombreDestino = "RTE:" + MiModeloMovil + MiNombreDestino;
+            System.Uri url = new System.Uri("http://" + Servidor + "/Reparto/Service1.svc/SaveDocument?docbinaryarray=" + buffer + "&docname=" + MiNombreDestino);
 
             string filePath = MiPath;
+
 
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             request.Accept = "application/octet-stream";
@@ -121,8 +156,6 @@ namespace FotosAServidor
             using (Stream fileStream = File.OpenRead(filePath))
             using (Stream requestStream = request.GetRequestStream())
             {
-                int bufferSize = 1002048;
-                byte[] buffer = new byte[bufferSize];
                 int byteCount = 0;
                 while ((byteCount = fileStream.Read(buffer, 0, bufferSize)) > 0)
                 {
@@ -136,6 +169,7 @@ namespace FotosAServidor
                 result = reader.ReadToEnd();
             }
         }
+
         private void Añadir_A_Grid(string MiPath)
             {
             string MiNombreImagen =
