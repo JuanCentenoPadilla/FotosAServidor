@@ -87,7 +87,7 @@ namespace FotosAServidor
             if (file == null) return;
             Añadir_A_Grid(file.Path.ToString());
         }
-
+ 
         private void ButEnviar_Clicked(object sender, EventArgs e)
         {
             if (TxtNombre.Text is null)
