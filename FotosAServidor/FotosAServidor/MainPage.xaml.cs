@@ -42,7 +42,7 @@ namespace FotosAServidor
 
             //Servidor = "213.98.73.215";
             //Servidor = "10.0.65.200";
-            Servidor = "192.168.1.200";
+            //Servidor = "192.168.1.200";
         }
 
         private async void ButCamara_Clicked(object sender, EventArgs e)
