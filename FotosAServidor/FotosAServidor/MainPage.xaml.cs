@@ -97,7 +97,7 @@ namespace FotosAServidor
             }
             for (int i = 0; i < GridImagenes.Children.Count; i++)
             {
-                string MiNombreImagen = TxtNombre.Text + "-" + i.ToString("00") + "_"
+                string MiNombreImagen = "TC " + TxtNombre.Text + "-" + i.ToString("00") + "_"
                 + DateTime.Now.Year + DateTime.Now.Month.ToString("00") + DateTime.Now.Day.ToString("00")
                 + DateTime.Now.Hour.ToString("00") + DateTime.Now.Minute.ToString("00") + DateTime.Now.Second.ToString("00");
                 MandarImagenAlServidor(imagenes.ElementAt(i).ImagenPath, "fotoscorreo", MiNombreImagen);
